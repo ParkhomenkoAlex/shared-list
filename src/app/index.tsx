@@ -29,13 +29,14 @@ function getDevMenuHint() {
 }
 
 export default function HomeScreen() {
+  console.log("Hello from Shared List!");
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <ThemedView style={styles.heroSection}>
           <AnimatedIcon />
           <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
+            Shared List test
           </ThemedText>
         </ThemedView>
 
