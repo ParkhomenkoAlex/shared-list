@@ -1,0 +1,64 @@
+import type { ExpoConfig } from 'expo/config';
+
+const appEnv = process.env.EXPO_PUBLIC_APP_ENV ?? 'Local';
+
+const config: ExpoConfig = {
+  name: `Shopping List ${appEnv}`,
+  slug: 'shopping-list',
+  version: '1.0.0',
+  orientation: 'portrait',
+  icon: './assets/images/icon.png',
+  scheme: 'shoppinglist',
+  userInterfaceStyle: 'automatic',
+
+  extra: {
+    appEnv,
+    supabaseUrl: process.env.EXPO_PUBLIC_SUPABASE_URL,
+    supabasePublishableKey:
+    process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+  },
+
+  ios: {
+    icon: './assets/expo.icon',
+  },
+
+  android: {
+    adaptiveIcon: {
+      backgroundColor: '#E6F4FE',
+      foregroundImage: './assets/images/android-icon-foreground.png',
+      backgroundImage: './assets/images/android-icon-background.png',
+      monochromeImage: './assets/images/android-icon-monochrome.png',
+    },
+    predictiveBackGestureEnabled: false,
+    package:
+        appEnv === 'Local'
+            ? 'com.anonymous.shoppinglist.local'
+            : appEnv === 'Dev'
+                ? 'com.anonymous.shoppinglist.dev'
+                : 'com.anonymous.shoppinglist',
+  },
+
+  web: {
+    output: 'static',
+    favicon: './assets/images/favicon.png',
+  },
+
+  plugins: [
+    'expo-router',
+    [
+      'expo-splash-screen',
+      {
+        backgroundColor: '#208AEF',
+        image: './assets/images/splash-icon.png',
+        imageWidth: 76,
+      },
+    ],
+  ],
+
+  experiments: {
+    typedRoutes: true,
+    reactCompiler: true,
+  },
+};
+
+export default config;
