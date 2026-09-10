@@ -26,12 +26,18 @@
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "lint": "expo lint",
+
     "local": "dotenv -e .env.local -- cross-env EXPO_NO_DOTENV=1 expo run:android",
     "dev": "dotenv -e .env.development -- cross-env EXPO_NO_DOTENV=1 expo run:android",
     "prod": "dotenv -e .env.production -- cross-env EXPO_NO_DOTENV=1 expo run:android",
-    "ios": "expo run:ios",
-    "web": "expo start --web",
-    "lint": "expo lint"
+
+    "db:status": "supabase status",
+    "db:migration:new": "supabase migration new",
+    "db:migration:up": "supabase migration up",
+    "db:migration:list": "supabase migration list"
   },
   "private": true
 }
