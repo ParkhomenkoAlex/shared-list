@@ -23,7 +23,7 @@ export default function HomeScreen() {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>
-                Shopping List {appEnv}
+                Shopping List Updated {appEnv}
             </Text>
 
             <Text>Our app starts here.</Text>
