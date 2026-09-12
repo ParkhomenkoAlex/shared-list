@@ -2,13 +2,25 @@ import type { ExpoConfig } from 'expo/config';
 
 const appEnv = process.env.EXPO_PUBLIC_APP_ENV ?? 'Local';
 
+const versionCodes = {
+  Local: 100,
+  Dev: 200,
+  Prod: 300,
+} as const;
+
+const versionCode =
+    versionCodes[appEnv as keyof typeof versionCodes] ?? 100;
+
 const config: ExpoConfig = {
-  name: `Shopping List ${appEnv}`,
+  name: `SL-${appEnv}`,
   slug: 'shopping-list',
   version: '1.0.0',
   orientation: 'portrait',
+
   icon: './assets/images/icon.png',
+
   scheme: 'shoppinglist',
+
   userInterfaceStyle: 'automatic',
 
   extra: {
@@ -23,13 +35,17 @@ const config: ExpoConfig = {
   },
 
   android: {
+    versionCode,
+
     adaptiveIcon: {
       backgroundColor: '#E6F4FE',
       foregroundImage: './assets/images/android-icon-foreground.png',
       backgroundImage: './assets/images/android-icon-background.png',
       monochromeImage: './assets/images/android-icon-monochrome.png',
     },
+
     predictiveBackGestureEnabled: false,
+
     package:
         appEnv === 'Local'
             ? 'com.anonymous.shoppinglist.local'
